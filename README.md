@@ -1,7 +1,7 @@
 # warehouse
 
-There may be problems with foreign key check on sql new version
-before running the sql file execute the code below on mysql coonsole or workbench
+There may be a problems with foreign key checks on sql new version.
+before running the sql file execute the code below in mysql coonsole or workbench
 
     FOREIGN_KEY_CHECKS = 0
 

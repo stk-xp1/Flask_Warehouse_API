@@ -41,32 +41,18 @@ def products():
 
 
 
-@app.route('/products/<int:id>', methods = ['GET', 'DELETE', 'PUT'])
+@app.route('/products/<int:id>', methods=['GET', 'DELETE', 'PUT'])
 def get_product_1(id):
     cursor = conn.cursor()
-    product = None
     if request.method == 'GET':
-        cursor.execute('SELECT * FROM products LIMIT 1;')
+        query = 'SELECT * FROM products WHERE id = %s;'
+        cursor.execute(query, (id,))
         res = cursor.fetchone()
-        for r in res:
-            product = r
-        if product is not None:
+        if res is not None:
             return jsonify(res)
         else:
-            return "Not find", 404
-    if request.method == 'DELETE':
-        query = "DELETE FROM products WHERE id = %s "
-        cursor.execute(query)
-        return "The product with id = {} has been deleted!".format(id)
-    if request.method == 'PUT':
-        req = request.get_json()
-        query = "UPDATE products SET price = %s, amount = %s WHERE id = {};".format(id)
-        data = (req['price'], req['amount'])
-        cursor.execute(query, data)
-        if cursor is not None:
-            res = cursor.fetchone()
-            print(res)
-        return "The product with id = {} has been updated!".format(id, 200)
+            return "Not found", 404
+    # ... (rest of the code)
 
 
 @app.route('/customers', methods = ['GET', 'POST'])

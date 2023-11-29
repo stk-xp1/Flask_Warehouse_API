@@ -7,4 +7,4 @@ before running the sql file execute the code below in mysql coonsole or workbenc
     FOREIGN_KEY_CHECKS = 0
 
 
-New updates
+## New updates
